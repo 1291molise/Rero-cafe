@@ -1,0 +1,6 @@
+{
+  "name": "Rero Cafe",
+  "description": "Artisan cafe and restaurant in Berea Hills, Main North 1. Experience gourmet meals, specialty coffee, direct WhatsApp reservations, and 5.0 rated hospitality.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

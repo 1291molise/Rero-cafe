@@ -3,7 +3,6 @@ import {
   MapPin,
   Clock,
   Phone,
-  MessageCircle,
   Navigation,
   ExternalLink,
   Car,
@@ -15,6 +14,7 @@ import {
 } from 'lucide-react';
 import { CAFE_INFO, TRANSLATIONS, BRAND_ASSETS } from '../data/cafeData';
 import { Language } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface LocationHoursProps {
   lang: Language;
@@ -144,10 +144,10 @@ export const LocationHours: React.FC<LocationHoursProps> = ({
               <button
                 id="location-whatsapp-btn"
                 onClick={onOpenReserve}
-                className="bg-white rounded-2xl p-4 border border-[#ded3c5] hover:border-emerald-500 shadow-xs transition-colors flex items-center gap-3 text-left group"
+                className="bg-white rounded-2xl p-4 border border-[#ded3c5] hover:border-[#25D366] shadow-xs transition-all flex items-center gap-3 text-left group hover:shadow-md"
               >
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                  <MessageCircle className="w-4 h-4" />
+                <div className="w-10 h-10 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center shrink-0 group-hover:bg-[#25D366] group-hover:text-white transition-colors">
+                  <WhatsAppIcon className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="block text-[11px] font-bold uppercase tracking-wider text-[#78716c]">
@@ -156,7 +156,7 @@ export const LocationHours: React.FC<LocationHoursProps> = ({
                   <span className="block text-sm font-bold text-[#1c1917]">
                     wa.me
                   </span>
-                  <span className="block text-[10px] text-emerald-700 font-medium">
+                  <span className="block text-[10px] text-[#25D366] font-bold">
                     {lang === 'st' ? 'Tobetsa ho Buka' : 'Book via WhatsApp'}
                   </span>
                 </div>

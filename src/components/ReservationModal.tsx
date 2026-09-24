@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X, Calendar, Clock, Users, MapPin, MessageCircle, CheckCircle2, Sparkles } from 'lucide-react';
+import { X, Calendar, Clock, Users, MapPin, CheckCircle2, Sparkles } from 'lucide-react';
 import { CAFE_INFO, TRANSLATIONS } from '../data/cafeData';
 import { Language, ReservationFormData } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface ReservationModalProps {
   isOpen: boolean;
@@ -195,9 +196,9 @@ Sent from Rero Cafe Website`;
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-colors"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-sm transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <WhatsAppIcon className="w-5 h-5" />
                   <span>{lang === 'st' ? 'Arolelana ka WhatsApp' : 'Open in WhatsApp (wa.me)'}</span>
                 </a>
                 <button
@@ -356,9 +357,9 @@ Sent from Rero Cafe Website`;
               <div className="pt-2 flex flex-col gap-2">
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-md transition-colors"
+                  className="w-full flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-all transform active:scale-95"
                 >
-                  <MessageCircle className="w-4 h-4" />
+                  <WhatsAppIcon className="w-5 h-5" />
                   <span>{t.confirmViaWhatsApp} (wa.me)</span>
                 </button>
 

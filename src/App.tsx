@@ -9,12 +9,14 @@ import { ReservationModal } from './components/ReservationModal';
 import { ReviewModal } from './components/ReviewModal';
 import { ShareModal } from './components/ShareModal';
 import { Toast } from './components/Toast';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { WhatsAppIcon } from './components/WhatsAppIcon';
 import { INITIAL_REVIEWS, CAFE_INFO, TRANSLATIONS } from './data/cafeData';
 import { Language, Review } from './types';
-import { Phone, Calendar, Navigation, Share2 } from 'lucide-react';
+import { Phone, Calendar, Navigation, Share2, UtensilsCrossed, Compass } from 'lucide-react';
 
 export default function App() {
-  // Primary language: defaults to Sesotho ('st') honoring the user's prompt, with 1-click toggle to English
+  // Primary language: defaults to Sesotho ('st') with toggle to English
   const [lang, setLang] = useState<Language>('st');
 
   // Bookmarking / Save state persisted in localStorage
@@ -87,7 +89,7 @@ export default function App() {
   const t = TRANSLATIONS[lang];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf8f5] text-[#1c1917] selection:bg-[#c28e5d] selection:text-white pb-16 sm:pb-0">
+    <div className="min-h-screen flex flex-col bg-[#faf8f5] text-[#1c1917] selection:bg-[#8B1E1E] selection:text-white pb-20 sm:pb-0">
       {/* Primary Sticky Header */}
       <Header
         lang={lang}
@@ -100,7 +102,7 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* Hero with full Action Ribbon (Letsa, Lipeeletso, Tlhaloso ea litsela, Ngola tlhahlobo, Save, Arolelana) */}
+        {/* Hero with full Action Ribbon and uploaded garden background */}
         <Hero
           lang={lang}
           onOpenReserve={() => setIsReserveOpen(true)}
@@ -121,7 +123,7 @@ export default function App() {
           onOpenWriteReview={() => setIsReviewOpen(true)}
         />
 
-        {/* Location, Directions, Operating Hours & Providers */}
+        {/* Location, Directions, Operating Hours & Berea Hills Map */}
         <LocationHours
           lang={lang}
           onOpenReserve={() => setIsReserveOpen(true)}
@@ -136,51 +138,73 @@ export default function App() {
         onNavigateTo={scrollToSection}
       />
 
-      {/* Mobile Sticky Quick Action Bar */}
-      <aside
-        aria-label="Mobile quick actions"
-        className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#ded3c5] p-2 flex sm:hidden items-center justify-around shadow-lg"
-      >
-        <a
-          id="mobile-call-btn"
-          href={`tel:${CAFE_INFO.phone}`}
-          className="flex flex-col items-center justify-center p-1 text-[#1c1917]"
-        >
-          <Phone className="w-4 h-4 text-[#9a6a38]" />
-          <span className="text-[10px] font-semibold mt-0.5">{t.callBtn}</span>
-        </a>
+      {/* Floating WhatsApp Action Button (Desktop & Tablet) */}
+      <div className="hidden sm:block">
+        <FloatingWhatsApp onOpenReserve={() => setIsReserveOpen(true)} />
+      </div>
 
+      {/* Ready App: Mobile Native Bottom Navigation Bar */}
+      <nav
+        aria-label="Mobile application navigation"
+        className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-[#ded3c5] px-2 py-2 flex sm:hidden items-center justify-around shadow-2xl safe-area-bottom"
+      >
         <button
-          id="mobile-reserve-btn"
-          onClick={() => setIsReserveOpen(true)}
-          className="flex flex-col items-center justify-center p-1 text-emerald-800"
+          id="mobile-nav-home"
+          onClick={() => scrollToSection('hero')}
+          className="flex flex-col items-center justify-center py-1 px-2 text-[#44403c] hover:text-[#8B1E1E] transition-colors"
         >
-          <Calendar className="w-4 h-4 text-emerald-600" />
-          <span className="text-[10px] font-semibold mt-0.5">{t.reserveBtn}</span>
+          <Compass className="w-5 h-5 text-[#8B1E1E]" />
+          <span className="text-[10px] font-bold mt-1">Rero</span>
         </button>
 
+        <button
+          id="mobile-nav-menu"
+          onClick={() => scrollToSection('menu-section')}
+          className="flex flex-col items-center justify-center py-1 px-2 text-[#44403c] hover:text-[#8B1E1E] transition-colors"
+        >
+          <UtensilsCrossed className="w-5 h-5 text-stone-600" />
+          <span className="text-[10px] font-semibold mt-1">
+            {lang === 'st' ? 'Lijo' : 'Menu'}
+          </span>
+        </button>
+
+        {/* Highlighted WhatsApp Tab in Mobile Navigation */}
         <a
-          id="mobile-directions-btn"
-          href={CAFE_INFO.mapsUrl}
+          id="mobile-nav-whatsapp"
+          href={CAFE_INFO.whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center p-1 text-[#1c1917]"
+          className="flex flex-col items-center justify-center -mt-4"
+          aria-label="WhatsApp Chat"
         >
-          <Navigation className="w-4 h-4 text-[#9a6a38]" />
-          <span className="text-[10px] font-semibold mt-0.5">{t.directionsBtn}</span>
+          <div className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg border-2 border-white transform active:scale-95 transition-transform">
+            <WhatsAppIcon className="w-6 h-6 text-white" />
+          </div>
+          <span className="text-[10px] font-extrabold text-[#25D366] mt-0.5">
+            WhatsApp
+          </span>
+        </a>
+
+        <a
+          id="mobile-nav-call"
+          href={`tel:${CAFE_INFO.phone}`}
+          className="flex flex-col items-center justify-center py-1 px-2 text-[#44403c] hover:text-[#8B1E1E] transition-colors"
+        >
+          <Phone className="w-5 h-5 text-stone-600" />
+          <span className="text-[10px] font-semibold mt-1">{t.callBtn}</span>
         </a>
 
         <button
-          id="mobile-share-btn"
-          onClick={() => setIsShareOpen(true)}
-          className="flex flex-col items-center justify-center p-1 text-[#1c1917]"
+          id="mobile-nav-reserve"
+          onClick={() => setIsReserveOpen(true)}
+          className="flex flex-col items-center justify-center py-1 px-2 text-[#44403c] hover:text-[#8B1E1E] transition-colors"
         >
-          <Share2 className="w-4 h-4 text-[#9a6a38]" />
-          <span className="text-[10px] font-semibold mt-0.5">{t.shareBtn}</span>
+          <Calendar className="w-5 h-5 text-amber-700" />
+          <span className="text-[10px] font-semibold mt-1">{t.reserveBtn}</span>
         </button>
-      </aside>
+      </nav>
 
-      {/* Modals & Dialogs */}
+      {/* Global Interactive Modals */}
       <ReservationModal
         isOpen={isReserveOpen}
         onClose={() => setIsReserveOpen(false)}
@@ -203,10 +227,10 @@ export default function App() {
         onSuccessToast={showToast}
       />
 
-      {/* Toast Feedback */}
+      {/* Feedback Toast Notification */}
       <Toast
-        isOpen={isToastOpen}
         message={toastMessage}
+        isOpen={isToastOpen}
         onClose={() => setIsToastOpen(false)}
       />
     </div>

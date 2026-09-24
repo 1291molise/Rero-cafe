@@ -1,7 +1,8 @@
 import React from 'react';
-import { Phone, MapPin, Clock, MessageCircle, Star, Heart } from 'lucide-react';
+import { Phone, MapPin, Clock, Star, Heart } from 'lucide-react';
 import { CAFE_INFO, TRANSLATIONS, BRAND_ASSETS } from '../data/cafeData';
 import { Language } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FooterProps {
   lang: Language;
@@ -119,14 +120,15 @@ export const Footer: React.FC<FooterProps> = ({
                 <span>{CAFE_INFO.hoursDisplay} ({t.hoursDetailed})</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0 mt-0.5" />
                 <a
                   href={CAFE_INFO.whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-emerald-300 underline font-medium"
+                  className="hover:text-[#25D366] font-medium transition-colors inline-flex items-center gap-1.5"
                 >
-                  wa.me/26659822812 (Lipeeletso)
+                  <span>wa.me/26659822812</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#25D366]/20 text-[#25D366] font-bold">WhatsApp</span>
                 </a>
               </li>
             </ul>

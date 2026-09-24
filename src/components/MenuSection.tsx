@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Sparkles, Flame, Leaf, Coffee, UtensilsCrossed, MessageCircle } from 'lucide-react';
+import { Search, Sparkles, Flame, Leaf, Coffee, UtensilsCrossed } from 'lucide-react';
 import { MENU_ITEMS, TRANSLATIONS, CAFE_INFO } from '../data/cafeData';
 import { Language, MenuItem } from '../types';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface MenuSectionProps {
   lang: Language;
@@ -186,11 +187,11 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
                       <button
                         id={`order-btn-${item.id}`}
                         onClick={() => handleOrderWhatsApp(item)}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 px-3 py-1.5 rounded-lg transition-colors"
-                        title="Order or inquire directly via WhatsApp"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] px-3 py-1.5 rounded-xl shadow-2xs transition-all transform active:scale-95"
+                        title="Order or inquire directly via WhatsApp (+266 5982 2812)"
                       >
-                        <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>Order (wa.me)</span>
+                        <WhatsAppIcon className="w-3.5 h-3.5" />
+                        <span>WhatsApp (wa.me)</span>
                       </button>
                     </div>
                   </div>

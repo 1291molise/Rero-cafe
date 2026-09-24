@@ -1,4 +1,5 @@
 import React from 'react';
+import { BRAND_ASSETS } from '../data/cafeData';
 
 interface ReroLogoProps {
   className?: string;
@@ -22,7 +23,7 @@ export const ReroLogo: React.FC<ReroLogoProps> = ({
     return (
       <div className={`inline-flex items-center gap-2.5 ${className}`}>
         <img
-          src="/src/assets/images/rero_cafe_logo_1790145588647.jpg"
+          src={BRAND_ASSETS.logoUrl}
           alt="Rero Cafe - eat, drink, relax, our mantra"
           className={`${sizeClasses[size]} w-auto object-contain rounded-lg`}
           referrerPolicy="no-referrer"

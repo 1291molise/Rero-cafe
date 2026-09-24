@@ -1,4 +1,6 @@
 import { CafeInfo, MenuItem, Review } from '../types';
+import logoUrl from '../assets/images/rero_cafe_logo_1790145588647.jpg';
+import gardenBgUrl from '../assets/images/rero_cafe_garden_1790145598736.jpg';
 
 export const CAFE_INFO: CafeInfo = {
   name: 'Rero Cafe',
@@ -18,8 +20,8 @@ export const CAFE_INFO: CafeInfo = {
 };
 
 export const BRAND_ASSETS = {
-  logoUrl: '/src/assets/images/rero_cafe_logo_1790145588647.jpg',
-  gardenBgUrl: '/src/assets/images/rero_cafe_garden_1790145598736.jpg',
+  logoUrl,
+  gardenBgUrl,
   motto: 'eat, drink, relax - our mantra.',
   mottoSesotho: 'ja, noa, phomola - sepheo sa rona.',
 };

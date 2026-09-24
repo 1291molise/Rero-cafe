@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Phone,
   Calendar,
@@ -10,14 +10,15 @@ import {
   MessageSquarePlus,
   Clock,
   MapPin,
-  ExternalLink,
-  MessageCircle,
   Sparkles,
   TreePine,
+  Maximize2,
+  X,
+  ChevronRight,
 } from 'lucide-react';
 import { CAFE_INFO, TRANSLATIONS, BRAND_ASSETS } from '../data/cafeData';
 import { Language } from '../types';
-import { ReroLogo } from './ReroLogo';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface HeroProps {
   lang: Language;
@@ -38,122 +39,143 @@ export const Hero: React.FC<HeroProps> = ({
   onToggleSave,
   onNavigateTo,
 }) => {
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
   const t = TRANSLATIONS[lang];
 
   return (
-    <section id="hero" className="relative pt-6 pb-12 sm:pt-8 sm:pb-16 overflow-hidden">
-      {/* Subtle warm background accents */}
-      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#e8dbcc]/50 rounded-full blur-3xl opacity-70" />
-        <div className="absolute top-1/2 -left-20 w-80 h-80 bg-[#dfceba]/40 rounded-full blur-3xl opacity-60" />
+    <section id="hero" className="relative min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden">
+      {/* 1. Full-Bleed Background Image (The uploaded garden photo) */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={BRAND_ASSETS.gardenBgUrl}
+          alt="Rero Cafe outdoor garden dining table and thatched lodge in Berea Hills"
+          className="w-full h-full object-cover object-center scale-105 animate-in fade-in duration-700"
+          loading="eager"
+          referrerPolicy="no-referrer"
+        />
+        {/* Multi-layered cinematic gradient overlays for contrast & luxury feel */}
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/80 to-stone-900/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-transparent to-black/40" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Grid: Left copy & action bar, Right visual showcase */}
+      {/* 2. Hero Content Container */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Brand, Rating, Description, Primary Action Ribbon */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Top Tag & Google Rating Pill */}
-            <div className="flex flex-wrap items-center gap-3">
+          
+          {/* Left Column: Brand Identity, Headlines, Quick Actions Ribbon */}
+          <div className="lg:col-span-8 space-y-6 text-white">
+            
+            {/* Badges Pill Row */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* Restaurant category tag */}
               <span
                 id="restaurant-badge"
-                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#111111] text-[#fbf8f5]"
+                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-white/15 backdrop-blur-md text-[#fcf9f6] border border-white/20 shadow-xs"
               >
                 {t.restaurantBadge}
               </span>
 
-              {/* Google 5.0 Rating Pill requested explicitly */}
+              {/* 5.0 Google Rating Badge */}
               <div
                 id="google-rating-hero-pill"
-                className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-[#e2d6c7] rounded-full shadow-xs text-xs font-semibold text-[#1c1917]"
+                className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full shadow-md text-xs font-bold text-[#1c1917]"
               >
                 <div className="flex text-amber-500">
                   <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                 </div>
-                <span className="font-bold">5.0</span>
-                <span className="text-[#78716c]">
-                  {lang === 'st' ? 'maikutlo a 1 a Google' : '5.0 on Google Reviews'}
+                <span>5.0</span>
+                <span className="text-[#57534e] font-medium">
+                  {lang === 'st' ? 'maikutlo a 1 a Google' : 'Google Reviews'}
                 </span>
               </div>
 
               {/* Live Hours Badge */}
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200/80 rounded-full text-xs font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-semibold backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span>{CAFE_INFO.hoursDisplay}</span>
               </div>
             </div>
 
-            {/* Official Logo Display with Mantra */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <img
-                  src={BRAND_ASSETS.logoUrl}
-                  alt="Rero Cafe Logo"
-                  className="h-16 sm:h-20 w-auto object-contain rounded-xl p-1 bg-white border border-[#e8ded2] shadow-xs"
-                  referrerPolicy="no-referrer"
-                />
+            {/* Official Logo Banner & Brand Slogan */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                {/* Official Logo (White frame) */}
+                <div className="p-1.5 rounded-2xl bg-white shadow-2xl border-2 border-white/80 shrink-0">
+                  <img
+                    src={BRAND_ASSETS.logoUrl}
+                    alt="Official Rero Cafe Logo"
+                    className="h-16 sm:h-20 w-auto object-contain rounded-xl"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
                 <div>
-                  <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#8B1E1E]/10 text-[#8B1E1E] text-xs font-bold uppercase tracking-wider">
-                    <Sparkles className="w-3 h-3" />
+                  <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#8B1E1E] text-white text-[11px] font-bold uppercase tracking-wider shadow-sm">
+                    <Sparkles className="w-3 h-3 text-amber-300" />
                     <span>{lang === 'st' ? BRAND_ASSETS.mottoSesotho : BRAND_ASSETS.motto}</span>
                   </div>
-                  <p className="text-xs text-[#78716c] mt-0.5">
-                    Main North 1, Berea Hills 200 · Maseru
+                  <p className="text-sm font-medium text-stone-300 mt-1 flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Main North 1, Berea Hills 200 · Maseru</span>
                   </p>
                 </div>
               </div>
 
-              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1c1917] leading-[1.15]">
+              {/* Headline */}
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-md">
                 {t.tagline}
               </h1>
-              <p className="text-sm sm:text-base text-[#57534e] max-w-xl leading-relaxed">
+              <p className="text-sm sm:text-base text-stone-200/90 max-w-2xl leading-relaxed">
                 {t.subtagline} {t.directionsNote}
               </p>
             </div>
 
-            {/* Quick Action Ribbon with all requested operations */}
-            <div className="pt-1">
-              <p className="text-xs uppercase tracking-wider font-semibold text-[#78716c] mb-2.5">
-                {lang === 'st' ? 'Litiro tse Potlakileng (Quick Actions)' : 'Quick Actions'}
+            {/* Quick Action Ribbon (All requested cafe actions) */}
+            <div className="pt-2">
+              <p className="text-xs uppercase tracking-wider font-bold text-stone-300/80 mb-3 flex items-center gap-2">
+                <span>{lang === 'st' ? 'Litiro tse Potlakileng' : 'Quick Actions'}</span>
+                <span className="h-px w-12 bg-white/20" />
               </p>
 
               <div
                 id="hero-actions-ribbon"
                 className="grid grid-cols-2 sm:grid-cols-3 gap-2.5"
               >
-                {/* 1. Letsa / Call */}
+                {/* 1. Reserve on WhatsApp (Official WhatsApp Logo) */}
                 <a
-                  id="action-call-btn"
-                  href={`tel:${CAFE_INFO.phone}`}
-                  className="flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-white border border-[#d6c7b5] text-[#1c1917] hover:border-[#8B1E1E] hover:bg-[#fcfaf7] shadow-xs transition-all text-sm font-semibold group"
+                  id="action-whatsapp-reserve-btn"
+                  href={CAFE_INFO.whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2.5 px-3 py-3 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-lg transition-all text-sm font-bold group border border-white/20 transform hover:-translate-y-0.5"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#f9eceb] flex items-center justify-center text-[#8B1E1E] group-hover:bg-[#8B1E1E] group-hover:text-white transition-colors">
-                    <Phone className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-[#25D366] transition-colors">
+                    <WhatsAppIcon className="w-5 h-5" />
                   </div>
-                  <div className="text-left">
-                    <span className="block leading-tight">{t.callBtn}</span>
-                    <span className="block text-[11px] text-[#78716c] font-normal">
-                      {CAFE_INFO.phone}
+                  <div className="text-left leading-tight truncate">
+                    <span className="block font-bold truncate">{t.reserveBtn}</span>
+                    <span className="block text-[11px] text-white/90 font-normal">
+                      wa.me
                     </span>
                   </div>
                 </a>
 
-                {/* 2. Lipeeletso / Reserve (WhatsApp & Modal) */}
-                <button
-                  id="action-reserve-btn"
-                  onClick={onOpenReserve}
-                  className="flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-[#111111] text-white hover:bg-[#2b2724] shadow-sm transition-all text-sm font-semibold group"
+                {/* 2. Letsa / Call */}
+                <a
+                  id="action-call-btn"
+                  href={`tel:${CAFE_INFO.phone}`}
+                  className="flex items-center justify-center gap-2.5 px-3 py-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 shadow-md transition-all text-sm font-semibold group transform hover:-translate-y-0.5"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                    <Calendar className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-xl bg-[#8B1E1E] flex items-center justify-center text-white shrink-0">
+                    <Phone className="w-4 h-4" />
                   </div>
-                  <div className="text-left">
-                    <span className="block leading-tight">{t.reserveBtn}</span>
-                    <span className="block text-[11px] text-stone-300 font-normal">
-                      wa.me
+                  <div className="text-left leading-tight truncate">
+                    <span className="block font-bold">{t.callBtn}</span>
+                    <span className="block text-[11px] text-stone-300 font-normal truncate">
+                      {CAFE_INFO.phone}
                     </span>
                   </div>
-                </button>
+                </a>
 
                 {/* 3. Tlhaloso ea litsela / Directions */}
                 <a
@@ -161,14 +183,14 @@ export const Hero: React.FC<HeroProps> = ({
                   href={CAFE_INFO.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-white border border-[#d6c7b5] text-[#1c1917] hover:border-[#8B1E1E] hover:bg-[#fcfaf7] shadow-xs transition-all text-sm font-semibold group"
+                  className="flex items-center justify-center gap-2.5 px-3 py-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 shadow-md transition-all text-sm font-semibold group transform hover:-translate-y-0.5"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#f4ebe1] flex items-center justify-center text-[#9a6a38] group-hover:bg-[#9a6a38] group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-amber-600 flex items-center justify-center text-white shrink-0">
                     <Navigation className="w-4 h-4" />
                   </div>
-                  <div className="text-left">
-                    <span className="block leading-tight truncate">{t.directionsBtn}</span>
-                    <span className="block text-[11px] text-[#78716c] font-normal truncate">
+                  <div className="text-left leading-tight truncate">
+                    <span className="block font-bold truncate">{t.directionsBtn}</span>
+                    <span className="block text-[11px] text-stone-300 font-normal truncate">
                       Main North 1
                     </span>
                   </div>
@@ -178,14 +200,14 @@ export const Hero: React.FC<HeroProps> = ({
                 <button
                   id="action-review-btn"
                   onClick={onOpenReview}
-                  className="flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-white border border-[#d6c7b5] text-[#1c1917] hover:border-[#8B1E1E] hover:bg-[#fcfaf7] shadow-xs transition-all text-sm font-semibold group"
+                  className="flex items-center justify-center gap-2.5 px-3 py-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 shadow-md transition-all text-sm font-semibold group transform hover:-translate-y-0.5"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#f4ebe1] flex items-center justify-center text-[#9a6a38] group-hover:bg-[#9a6a38] group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center text-amber-300 shrink-0">
                     <MessageSquarePlus className="w-4 h-4" />
                   </div>
-                  <div className="text-left">
-                    <span className="block leading-tight truncate">{t.writeReviewBtn}</span>
-                    <span className="block text-[11px] text-[#78716c] font-normal">
+                  <div className="text-left leading-tight truncate">
+                    <span className="block font-bold truncate">{t.writeReviewBtn}</span>
+                    <span className="block text-[11px] text-stone-300 font-normal">
                       5.0★ Google
                     </span>
                   </div>
@@ -195,51 +217,45 @@ export const Hero: React.FC<HeroProps> = ({
                 <button
                   id="action-share-btn"
                   onClick={onOpenShare}
-                  className="flex items-center justify-center gap-2 px-3 py-3 rounded-xl bg-white border border-[#d6c7b5] text-[#1c1917] hover:border-[#8B1E1E] hover:bg-[#fcfaf7] shadow-xs transition-all text-sm font-semibold group"
+                  className="flex items-center justify-center gap-2.5 px-3 py-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 shadow-md transition-all text-sm font-semibold group transform hover:-translate-y-0.5"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#f4ebe1] flex items-center justify-center text-[#9a6a38] group-hover:bg-[#9a6a38] group-hover:text-white transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center text-stone-200 shrink-0">
                     <Share2 className="w-4 h-4" />
                   </div>
-                  <div className="text-left">
-                    <span className="block leading-tight">{t.shareBtn}</span>
-                    <span className="block text-[11px] text-[#78716c] font-normal">
-                      Social / Web
+                  <div className="text-left leading-tight truncate">
+                    <span className="block font-bold">{t.shareBtn}</span>
+                    <span className="block text-[11px] text-stone-300 font-normal">
+                      Share Cafe
                     </span>
                   </div>
                 </button>
 
-                {/* 6. Save / Boloka */}
+                {/* 6. Boloka / Save */}
                 <button
                   id="action-save-btn"
                   onClick={onToggleSave}
-                  className={`flex items-center justify-center gap-2 px-3 py-3 rounded-xl border shadow-xs transition-all text-sm font-semibold group ${
+                  className={`flex items-center justify-center gap-2.5 px-3 py-3 rounded-2xl border shadow-md transition-all text-sm font-semibold group transform hover:-translate-y-0.5 ${
                     isSaved
                       ? 'bg-[#8B1E1E] text-white border-[#8B1E1E]'
-                      : 'bg-white border-[#d6c7b5] text-[#1c1917] hover:border-[#8B1E1E] hover:bg-[#fcfaf7]'
+                      : 'bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border-white/20'
                   }`}
                 >
                   <div
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                      isSaved
-                        ? 'bg-white/20 text-white'
-                        : 'bg-[#f4ebe1] text-[#9a6a38] group-hover:bg-[#8B1E1E] group-hover:text-white'
+                    className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
+                      isSaved ? 'bg-white/20 text-white' : 'bg-white/15 text-stone-200'
                     }`}
                   >
                     {isSaved ? (
-                      <BookmarkCheck className="w-4 h-4" />
+                      <BookmarkCheck className="w-4 h-4 text-emerald-300" />
                     ) : (
                       <Bookmark className="w-4 h-4" />
                     )}
                   </div>
-                  <div className="text-left">
-                    <span className="block leading-tight">
+                  <div className="text-left leading-tight truncate">
+                    <span className="block font-bold">
                       {isSaved ? t.savedBtn : t.saveBtn}
                     </span>
-                    <span
-                      className={`block text-[11px] font-normal ${
-                        isSaved ? 'text-white/80' : 'text-[#78716c]'
-                      }`}
-                    >
+                    <span className="block text-[11px] text-stone-300 font-normal">
                       {isSaved ? 'In Favorites' : 'Bookmark'}
                     </span>
                   </div>
@@ -247,95 +263,164 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
             </div>
 
-            {/* Quick Metadata Pill Strip directly from user's notes */}
-            <div
-              id="hero-metadata-strip"
-              className="pt-1 grid grid-cols-1 sm:grid-cols-2 gap-3"
-            >
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/80 border border-[#e7ddd1]">
-                <MapPin className="w-4 h-4 text-[#8B1E1E] shrink-0 mt-0.5" />
-                <div>
-                  <span className="block text-xs font-bold text-[#78716c] uppercase tracking-wider">
-                    {t.addressLabel}
-                  </span>
-                  <span className="block text-sm font-medium text-[#1c1917]">
-                    {CAFE_INFO.address}
-                  </span>
-                </div>
-              </div>
+            {/* Bottom Menu Navigation CTA */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => onNavigateTo('menu-section')}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#1c1917] hover:bg-stone-100 font-bold text-xs sm:text-sm shadow-lg transition-all"
+              >
+                <span>{lang === 'st' ? 'Sheba Lenane la Lijo' : 'Explore Cafe Menu'}</span>
+                <ChevronRight className="w-4 h-4 text-[#8B1E1E]" />
+              </button>
 
-              <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/80 border border-[#e7ddd1]">
-                <Clock className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-                <div>
-                  <span className="block text-xs font-bold text-[#78716c] uppercase tracking-wider">
-                    {t.hoursLabel}
-                  </span>
-                  <span className="block text-sm font-medium text-[#1c1917]">
-                    {CAFE_INFO.hoursDisplay}
-                  </span>
-                </div>
-              </div>
+              <button
+                onClick={() => setShowPhotoModal(true)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-stone-200 font-semibold text-xs transition-all border border-white/20"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-amber-300" />
+                <span>{lang === 'st' ? 'Bona Setšoantšo sa Serapa' : 'View Berea Garden Photo'}</span>
+              </button>
             </div>
           </div>
 
-          {/* Right Column: Authentic Rero Cafe Garden Dining Visual Showcase */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#111111]">
-              <img
-                src={BRAND_ASSETS.gardenBgUrl}
-                alt="Rero Cafe outdoor garden dining table and thatched lodge in Berea Hills"
-                className="w-full h-[400px] sm:h-[470px] object-cover hover:scale-105 transition-transform duration-700 ease-out"
-                loading="eager"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-
-              {/* Floating review highlight card on image */}
-              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-white/40 max-w-[210px]">
-                <div className="flex items-center gap-1 text-amber-500 mb-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                  ))}
+          {/* Right Column: Glassmorphic Atmosphere Card & Highlights */}
+          <div className="lg:col-span-4 space-y-4">
+            {/* Real Atmosphere Card */}
+            <div className="rounded-3xl bg-stone-900/80 backdrop-blur-xl border border-white/20 p-5 shadow-2xl space-y-4 text-white">
+              
+              {/* Garden Dining Highlight Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                    <TreePine className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                      Berea Garden Dining
+                    </h3>
+                    <p className="text-[11px] text-stone-300">Outdoor Lawn & Thatched Lodge</p>
+                  </div>
                 </div>
-                <p className="text-xs font-bold text-[#1c1917]">
-                  5.0 Google Rating
-                </p>
-                <p className="text-[11px] text-[#57534e] leading-snug">
-                  "Garden table dining, mountain breeze & late night hospitality."
-                </p>
-              </div>
-
-              {/* Floating Garden Terrace Pill */}
-              <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-900/80 backdrop-blur-md text-white text-xs font-semibold border border-emerald-500/30">
-                <TreePine className="w-3.5 h-3.5 text-emerald-300" />
-                <span>Berea Garden Dining</span>
-              </div>
-
-              {/* Floating Bottom Info Banner */}
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-semibold text-[#f0b0b0] uppercase tracking-wide">
-                    {BRAND_ASSETS.motto}
-                  </p>
-                  <p className="text-base font-serif font-bold text-white">
-                    {CAFE_INFO.name} · Berea Hills
-                  </p>
-                </div>
-                <a
-                  id="hero-whatsapp-direct-btn"
-                  href={CAFE_INFO.whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors"
+                <button
+                  onClick={() => setShowPhotoModal(true)}
+                  className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-stone-300 transition-colors"
+                  title="Expand photo"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>wa.me</span>
-                </a>
+                  <Maximize2 className="w-4 h-4" />
+                </button>
               </div>
+
+              {/* Thumbnail of the user's authentic photo */}
+              <div
+                onClick={() => setShowPhotoModal(true)}
+                className="relative rounded-2xl overflow-hidden border border-white/20 cursor-pointer group h-40"
+              >
+                <img
+                  src={BRAND_ASSETS.gardenBgUrl}
+                  alt="Rero Cafe lawn dining table"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute bottom-2 left-2 right-2 px-2.5 py-1.5 rounded-lg bg-black/70 backdrop-blur-xs text-[11px] font-semibold text-white flex items-center justify-between">
+                  <span>Main North 1, Berea Hills</span>
+                  <span className="text-amber-300 font-mono">5.0★</span>
+                </div>
+              </div>
+
+              {/* Operating Hours Box */}
+              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2.5">
+                  <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <div>
+                    <span className="block text-stone-400 text-[10px] uppercase font-bold">
+                      {t.hoursLabel}
+                    </span>
+                    <span className="block font-semibold text-white">
+                      {CAFE_INFO.hoursDisplay}
+                    </span>
+                  </div>
+                </div>
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
+                  Daily
+                </span>
+              </div>
+
+              {/* WhatsApp Direct Banner */}
+              <a
+                href={CAFE_INFO.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-3 rounded-2xl bg-[#25D366]/20 border border-[#25D366]/40 hover:bg-[#25D366]/30 text-white transition-all group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
+                  <div>
+                    <p className="text-xs font-bold text-white leading-tight">
+                      Chat on WhatsApp
+                    </p>
+                    <p className="text-[11px] text-stone-300">
+                      wa.me/26659822812
+                    </p>
+                  </div>
+                </div>
+                <ChevronRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </div>
         </div>
       </div>
+
+      {/* 3. Fullscreen Photo Modal for the uploaded photo */}
+      {showPhotoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in">
+          <div className="relative max-w-4xl w-full bg-stone-900 rounded-3xl overflow-hidden border border-white/20 shadow-2xl">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowPhotoModal(false)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black transition-colors"
+              aria-label="Close photo"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <img
+              src={BRAND_ASSETS.gardenBgUrl}
+              alt="Rero Cafe Full Berea Hills outdoor garden view"
+              className="w-full max-h-[75vh] object-contain bg-black"
+              referrerPolicy="no-referrer"
+            />
+
+            <div className="p-4 sm:p-6 bg-stone-950 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
+              <div>
+                <h4 className="font-serif text-lg font-bold">
+                  Rero Cafe · Berea Hills 200
+                </h4>
+                <p className="text-xs text-stone-400">
+                  Main North 1 · Open until 12:00 AM midnight · {BRAND_ASSETS.motto}
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href={CAFE_INFO.whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20bd5a]"
+                >
+                  <WhatsAppIcon className="w-4 h-4" />
+                  <span>Reserve on WhatsApp</span>
+                </a>
+                <button
+                  onClick={() => setShowPhotoModal(false)}
+                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

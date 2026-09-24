@@ -56,23 +56,23 @@ export const Header: React.FC<HeaderProps> = ({
               id="logo-brand-btn"
               onClick={() => handleNavClick('hero')}
               className="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none group"
-              aria-label="Rero Cafe Home"
+              aria-label="The Valley Guest House Home"
             >
               {/* Official Logo on Navbar */}
-              <div className="p-1 rounded-xl bg-white border border-[#e2d5c4] shadow-xs group-hover:border-[#8B1E1E] transition-colors">
+              <div className="p-0.5 rounded-xl bg-white border border-[#b8860b]/40 shadow-xs group-hover:border-[#b8860b] transition-colors">
                 <ReroLogo size="md" variant="image" />
               </div>
               <div className="hidden sm:block border-l border-[#ded3c5] pl-3">
                 <div className="flex items-center gap-1.5">
-                  <span className="block text-[11px] font-extrabold tracking-wider uppercase text-[#8B1E1E]">
-                    Berea Hills 200
+                  <span className="block text-[11px] font-extrabold tracking-wider uppercase text-[#a16207]">
+                    The Valley · Lesotho
                   </span>
                   <span className="inline-flex items-center px-1.5 py-0.2 rounded bg-amber-100 text-amber-900 text-[10px] font-bold">
-                    5.0★
+                    R350 / Night Couple
                   </span>
                 </div>
                 <span className="block text-[11px] text-[#57534e] font-serif italic">
-                  {lang === 'st' ? BRAND_ASSETS.mottoSesotho : BRAND_ASSETS.motto}
+                  {lang === 'st' ? BRAND_ASSETS.rateCoupleSesotho : BRAND_ASSETS.rateCouple}
                 </span>
               </div>
             </button>
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-xs hover:shadow-md transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-              title="Chat with Rero Cafe on WhatsApp (+266 5982 2812)"
+              title="Chat with The Valley Guest House on WhatsApp (+266 560 383 39)"
               aria-label="WhatsApp"
             >
               <WhatsAppIcon className="w-4 h-4" />
@@ -149,10 +149,10 @@ export const Header: React.FC<HeaderProps> = ({
             <a
               id="header-call-btn"
               href={`tel:${CAFE_INFO.phone}`}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#d6c8b8] text-xs sm:text-sm font-semibold text-[#292524] hover:border-[#8B1E1E] hover:bg-[#fbf7f4] transition-all"
-              title="Call Rero Cafe: 5982 2812"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#d6c8b8] text-xs sm:text-sm font-semibold text-[#292524] hover:border-[#a16207] hover:bg-[#fbf7f4] transition-all"
+              title="Call The Valley Guest House: +266 560 383 39"
             >
-              <Phone className="w-3.5 h-3.5 text-[#8B1E1E]" />
+              <Phone className="w-3.5 h-3.5 text-[#a16207]" />
               <span>{t.callBtn}</span>
             </a>
 
@@ -259,7 +259,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-sm"
             >
               <WhatsAppIcon className="w-5 h-5" />
-              <span>Chat on WhatsApp (+266 5982 2812)</span>
+              <span>Chat on WhatsApp (+266 560 383 39)</span>
             </a>
 
             <button

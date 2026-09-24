@@ -65,8 +65,8 @@ export default function App() {
       showToast(
         next
           ? lang === 'st'
-            ? 'Rero Cafe e bolokiloe har\'a libaka tseo u li ratang!'
-            : 'Rero Cafe saved to your favorite bookmarks!'
+            ? 'The Valley Guest House e bolokiloe har\'a libaka tseo u li ratang!'
+            : 'The Valley Guest House saved to your favorite bookmarks!'
           : lang === 'st'
             ? 'E tlositsoe har\'a libaka tse bolokiloeng'
             : 'Removed from bookmarks'
@@ -151,10 +151,10 @@ export default function App() {
         <button
           id="mobile-nav-home"
           onClick={() => scrollToSection('hero')}
-          className="flex flex-col items-center justify-center py-1 px-2 text-[#44403c] hover:text-[#8B1E1E] transition-colors"
+          className="flex flex-col items-center justify-center py-1 px-2 text-[#44403c] hover:text-[#a16207] transition-colors"
         >
-          <Compass className="w-5 h-5 text-[#8B1E1E]" />
-          <span className="text-[10px] font-bold mt-1">Rero</span>
+          <Compass className="w-5 h-5 text-[#a16207]" />
+          <span className="text-[10px] font-bold mt-1">Valley</span>
         </button>
 
         <button

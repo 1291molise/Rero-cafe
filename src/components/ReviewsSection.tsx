@@ -72,8 +72,8 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
               </div>
               <p className="text-xs font-semibold text-[#78716c]">
                 {lang === 'st'
-                  ? 'E lekantsoe ka holimo ho tsohle Berea Hills'
-                  : 'Highest rating in Berea Hills & Maseru North'}
+                  ? 'E lekantsoe ka holimo ho tsohle The Valley, Lesotho'
+                  : 'Highest guest satisfaction in The Valley, Lesotho'}
               </p>
             </div>
 
@@ -81,19 +81,19 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
             <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-white/80 rounded-2xl p-4 border border-white/60">
                 <span className="block font-serif text-lg font-bold text-[#1c1917]">
-                  100%
+                  R350
                 </span>
                 <span className="block text-xs text-[#78716c] font-medium mt-0.5">
-                  {lang === 'st' ? 'Khothatso ea Bareki' : 'Guest Recommendation'}
+                  {lang === 'st' ? 'Boiketlo ba Bobeli (Couples)' : 'Per Night For A Couple'}
                 </span>
               </div>
 
               <div className="bg-white/80 rounded-2xl p-4 border border-white/60">
                 <span className="block font-serif text-lg font-bold text-[#1c1917]">
-                  12:00 AM
+                  24/7
                 </span>
                 <span className="block text-xs text-[#78716c] font-medium mt-0.5">
-                  {lang === 'st' ? 'Lihora tse Ntle tsa Bosiu' : 'Late Evening Kitchen'}
+                  {lang === 'st' ? 'Kamohelo e Mofuthu' : 'Guest Reception & Stays'}
                 </span>
               </div>
 
@@ -102,7 +102,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({
                   wa.me
                 </span>
                 <span className="block text-xs text-[#78716c] font-medium mt-0.5">
-                  {lang === 'st' ? 'Lipeeletso tse Bobebe' : 'Instant WhatsApp Booking'}
+                  {lang === 'st' ? 'Lipeeletso tse Bobebe (+266 560 383 39)' : 'WhatsApp Booking (+266 560 383 39)'}
                 </span>
               </div>
             </div>

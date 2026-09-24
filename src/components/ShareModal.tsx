@@ -22,7 +22,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   if (!isOpen) return null;
 
   const currentUrl = window.location.href;
-  const shareText = `Check out Rero Cafe in Berea Hills (Main North 1)! 5.0 Google Rating restaurant, artisan coffee & dinner, open until 12 AM midnight:`;
+  const shareText = `Check out The Valley Guest House in Lesotho! R350 per night for a couple, scenic mountain views, peaceful retreat. WhatsApp: +266 560 383 39:`;
 
   const handleCopyLink = async () => {
     try {
@@ -52,7 +52,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
 
   const handleTwitterShare = () => {
     const text = encodeURIComponent(
-      `Experience Rero Cafe in Berea Hills! 5.0 rated coffee & dining, open until 12 AM.`
+      `Experience The Valley Guest House! R350 per night for a couple in Lesotho. WhatsApp: +266 560 383 39.`
     );
     window.open(
       `https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(currentUrl)}`,
@@ -65,7 +65,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Rero Cafe - Berea Hills',
+          title: 'The Valley Guest House - Lesotho',
           text: shareText,
           url: currentUrl,
         });

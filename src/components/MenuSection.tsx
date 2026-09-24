@@ -41,9 +41,9 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
 
   const handleOrderWhatsApp = (item: MenuItem) => {
     const text = encodeURIComponent(
-      `Hello Rero Cafe! I am viewing your menu on your website and would like to order or inquire about: ${item.name} (M${item.price}).`
+      `Hello The Valley Guest House! I am viewing your website and would like to inquire/book: ${item.name} (R${item.price}).`
     );
-    window.open(`https://wa.me/26659822812?text=${text}`, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/26656038339?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -51,8 +51,8 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ lang }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title & Subtitle */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#9a6a38] block mb-2">
-            {lang === 'st' ? 'Lenane la Rero Cafe' : 'Artisan Selections'}
+          <span className="text-xs font-bold uppercase tracking-widest text-[#a16207] block mb-2">
+            {lang === 'st' ? 'The Valley Guest House · R350 / Couple' : 'The Valley Guest House · R350 Per Night For A Couple'}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1c1917]">
             {t.menuTitle}

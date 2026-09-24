@@ -28,16 +28,16 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-center gap-3">
               <img
                 src={BRAND_ASSETS.logoUrl}
-                alt="Rero Cafe Logo"
-                className="h-14 w-auto object-contain rounded-xl p-1 bg-white border border-stone-700"
+                alt="The Valley Guest House Logo"
+                className="h-16 w-auto object-contain rounded-xl p-1 bg-white border border-[#b8860b]/50 shadow-md"
                 referrerPolicy="no-referrer"
               />
               <div>
                 <span className="font-serif text-2xl font-bold tracking-tight text-white block">
-                  RERO CAFE
+                  THE VALLEY GUEST HOUSE
                 </span>
-                <span className="text-xs font-semibold tracking-wider uppercase text-[#f08080]">
-                  {BRAND_ASSETS.motto}
+                <span className="text-xs font-semibold tracking-wider uppercase text-amber-400">
+                  R350 PER NIGHT FOR A COUPLE
                 </span>
               </div>
             </div>
@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({
             </p>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-[#e8c092]">
               <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              <span>{lang === 'st' ? '5.0 maikutlo a 1 a Google' : '5.0 Google Rating'}</span>
+              <span>{lang === 'st' ? '5.0 maikutlo a Google' : '5.0 Google Rating'}</span>
             </div>
           </div>
 
@@ -106,11 +106,11 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2.5 text-xs text-stone-300">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#8B1E1E] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#a16207] shrink-0 mt-0.5" />
                 <span>{CAFE_INFO.address}, {CAFE_INFO.area}</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-[#8B1E1E] shrink-0 mt-0.5" />
+                <Phone className="w-4 h-4 text-[#a16207] shrink-0 mt-0.5" />
                 <a href={`tel:${CAFE_INFO.phone}`} className="hover:text-white">
                   {CAFE_INFO.phone} ({CAFE_INFO.phoneFormatted})
                 </a>
@@ -127,7 +127,7 @@ export const Footer: React.FC<FooterProps> = ({
                   rel="noopener noreferrer"
                   className="hover:text-[#25D366] font-medium transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>wa.me/26659822812</span>
+                  <span>wa.me/26656038339</span>
                   <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#25D366]/20 text-[#25D366] font-bold">WhatsApp</span>
                 </a>
               </li>
@@ -136,7 +136,7 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="pt-2">
               <button
                 onClick={onOpenReserve}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#8B1E1E] hover:bg-[#721818] text-white font-semibold text-xs transition-colors shadow-sm"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#a16207] hover:bg-[#854d0e] text-white font-semibold text-xs transition-colors shadow-sm"
               >
                 {t.reserveBtn}
               </button>
@@ -146,9 +146,9 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-3">
-          <p>© {new Date().getFullYear()} {CAFE_INFO.name}. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {CAFE_INFO.name}. All rights reserved. R350 per night for a couple.</p>
           <p className="flex items-center gap-1">
-            <span>Crafted for Berea Hills with</span>
+            <span>Crafted for The Valley with</span>
             <Heart className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
             <span>Lesotho</span>
           </p>

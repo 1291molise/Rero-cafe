@@ -50,7 +50,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({
     onSuccessToast(
       lang === 'st'
         ? 'Re leboha haholo ka tlhahlobo ea hao e mofuthu!'
-        : 'Thank you for your 5-star review for Rero Cafe!'
+        : 'Thank you for your review for The Valley Guest House!'
     );
   };
 

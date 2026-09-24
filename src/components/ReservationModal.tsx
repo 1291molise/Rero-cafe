@@ -60,22 +60,22 @@ export const ReservationModal: React.FC<ReservationModalProps> = ({
       return;
     }
 
-    const message = `Hello Rero Cafe! I would like to make a table reservation:
+    const message = `Hello The Valley Guest House! I would like to book a stay (Special Rate: R350 per night for a couple):
 *Name:* ${formData.fullName}
 *Phone:* ${formData.phone}
-*Guests:* ${formData.guests} person(s)
-*Date:* ${formData.date}
-*Time:* ${formData.time}
-*Seating Area:* ${formData.seatingPreference.toUpperCase()}
+*Guests / Couple:* ${formData.guests} person(s)
+*Check-in Date:* ${formData.date}
+*Arrival Time:* ${formData.time}
+*Room Preference:* ${formData.seatingPreference.toUpperCase()} (R350/night)
 ${formData.specialRequests ? `*Special Notes:* ${formData.specialRequests}` : ''}
-Sent from Rero Cafe Website`;
+Sent from The Valley Guest House Website (wa.me/26656038339)`;
 
     const encoded = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/26659822812?text=${encoded}`;
+    const whatsappUrl = `https://wa.me/26656038339?text=${encoded}`;
 
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
-    const bookingId = `RERO-${Math.floor(1000 + Math.random() * 9000)}`;
+    const bookingId = `VALLEY-${Math.floor(1000 + Math.random() * 9000)}`;
     setConfirmedBooking({
       id: bookingId,
       date: formData.date,
@@ -191,8 +191,8 @@ Sent from Rero Cafe Website`;
 
               <div className="pt-2 flex flex-col gap-2">
                 <a
-                  href={`https://wa.me/26659822812?text=${encodeURIComponent(
-                    `Hi Rero Cafe, I just confirmed reservation ${confirmedBooking.id} for ${confirmedBooking.name}. Looking forward to dining with you!`
+                  href={`https://wa.me/26656038339?text=${encodeURIComponent(
+                    `Hi The Valley Guest House, I just confirmed reservation ${confirmedBooking.id} for ${confirmedBooking.name} (R350 couple rate). Looking forward to our stay!`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -16,7 +16,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenReserv
       {showTooltip && (
         <div className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-md border border-[#ded2c3] text-[#1c1917] shadow-xl text-xs font-semibold animate-in fade-in slide-in-from-bottom-2">
           <div className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
-          <span>Chat on WhatsApp · 5982 2812</span>
+          <span>WhatsApp · +266 560 383 39</span>
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -37,8 +37,8 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenReserv
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl hover:shadow-[#25D366]/40 transition-all transform hover:scale-105 active:scale-95 duration-200 border-2 border-white"
-        title="Open WhatsApp Chat with Rero Cafe"
-        aria-label="Chat with Rero Cafe on WhatsApp"
+        title="Open WhatsApp Chat with The Valley Guest House"
+        aria-label="Chat with The Valley Guest House on WhatsApp"
       >
         <span className="relative flex items-center justify-center">
           <WhatsAppIcon className="w-6 h-6 text-white" />

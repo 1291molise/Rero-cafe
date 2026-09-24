@@ -44,11 +44,11 @@ export const Hero: React.FC<HeroProps> = ({
 
   return (
     <section id="hero" className="relative min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden">
-      {/* 1. Full-Bleed Background Image (The uploaded garden photo) */}
+      {/* 1. Full-Bleed Background Image (The Valley Guest House scenic photo) */}
       <div className="absolute inset-0 z-0">
         <img
           src={BRAND_ASSETS.gardenBgUrl}
-          alt="Rero Cafe outdoor garden dining table and thatched lodge in Berea Hills"
+          alt="The Valley Guest House mountain valley landscape and lodge in Lesotho"
           className="w-full h-full object-cover object-center scale-105 animate-in fade-in duration-700"
           loading="eager"
           referrerPolicy="no-referrer"
@@ -67,7 +67,15 @@ export const Hero: React.FC<HeroProps> = ({
             
             {/* Badges Pill Row */}
             <div className="flex flex-wrap items-center gap-2.5">
-              {/* Restaurant category tag */}
+              {/* Special Couple Rate Tag */}
+              <span
+                id="rate-badge"
+                className="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-extrabold tracking-wide uppercase bg-amber-500 text-stone-950 shadow-md animate-pulse"
+              >
+                ★ R350 Per Night For A Couple
+              </span>
+
+              {/* Guest House category tag */}
               <span
                 id="restaurant-badge"
                 className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-white/15 backdrop-blur-md text-[#fcf9f6] border border-white/20 shadow-xs"
@@ -85,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
                 <span>5.0</span>
                 <span className="text-[#57534e] font-medium">
-                  {lang === 'st' ? 'maikutlo a 1 a Google' : 'Google Reviews'}
+                  {lang === 'st' ? 'maikutlo a Google' : 'Google Reviews'}
                 </span>
               </div>
 
@@ -99,32 +107,35 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Official Logo Banner & Brand Slogan */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                {/* Official Logo (White frame) */}
-                <div className="p-1.5 rounded-2xl bg-white shadow-2xl border-2 border-white/80 shrink-0">
+                {/* Official Logo Card (The uploaded logo) */}
+                <div className="p-1 rounded-2xl bg-white shadow-2xl border-2 border-[#b8860b]/70 shrink-0">
                   <img
                     src={BRAND_ASSETS.logoUrl}
-                    alt="Official Rero Cafe Logo"
-                    className="h-16 sm:h-20 w-auto object-contain rounded-xl"
+                    alt="The Valley Guest House Logo - +266 560 383 39"
+                    className="h-18 sm:h-22 w-auto object-contain rounded-xl"
                     referrerPolicy="no-referrer"
                   />
                 </div>
 
                 <div>
-                  <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#8B1E1E] text-white text-[11px] font-bold uppercase tracking-wider shadow-sm">
-                    <Sparkles className="w-3 h-3 text-amber-300" />
-                    <span>{lang === 'st' ? BRAND_ASSETS.mottoSesotho : BRAND_ASSETS.motto}</span>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#a16207] text-white text-xs font-bold uppercase tracking-wider shadow-sm">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-200" />
+                    <span>R350 Per Night For A Couple</span>
                   </div>
-                  <p className="text-sm font-medium text-stone-300 mt-1 flex items-center gap-1.5">
+                  <p className="text-sm font-medium text-stone-300 mt-1.5 flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Main North 1, Berea Hills 200 · Maseru</span>
+                    <span>The Valley · Lesotho · WhatsApp +266 560 383 39</span>
                   </p>
                 </div>
               </div>
 
               {/* Headline */}
               <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] drop-shadow-md">
-                {t.tagline}
+                {CAFE_INFO.name}
               </h1>
+              <p className="text-base sm:text-lg text-amber-200 font-semibold drop-shadow-xs">
+                {lang === 'st' ? BRAND_ASSETS.rateCoupleSesotho : 'R350 per night for a couple · Cozy and romantic retreat'}
+              </p>
               <p className="text-sm sm:text-base text-stone-200/90 max-w-2xl leading-relaxed">
                 {t.subtagline} {t.directionsNote}
               </p>
@@ -166,7 +177,7 @@ export const Hero: React.FC<HeroProps> = ({
                   href={`tel:${CAFE_INFO.phone}`}
                   className="flex items-center justify-center gap-2.5 px-3 py-3 rounded-2xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 shadow-md transition-all text-sm font-semibold group transform hover:-translate-y-0.5"
                 >
-                  <div className="w-8 h-8 rounded-xl bg-[#8B1E1E] flex items-center justify-center text-white shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-[#a16207] flex items-center justify-center text-white shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div className="text-left leading-tight truncate">
@@ -191,7 +202,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <div className="text-left leading-tight truncate">
                     <span className="block font-bold truncate">{t.directionsBtn}</span>
                     <span className="block text-[11px] text-stone-300 font-normal truncate">
-                      Main North 1
+                      The Valley, Lesotho
                     </span>
                   </div>
                 </a>
@@ -269,8 +280,8 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={() => onNavigateTo('menu-section')}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-[#1c1917] hover:bg-stone-100 font-bold text-xs sm:text-sm shadow-lg transition-all"
               >
-                <span>{lang === 'st' ? 'Sheba Lenane la Lijo' : 'Explore Cafe Menu'}</span>
-                <ChevronRight className="w-4 h-4 text-[#8B1E1E]" />
+                <span>{lang === 'st' ? 'Sheba Likamore le Lijo' : 'View Rooms & Dining'}</span>
+                <ChevronRight className="w-4 h-4 text-[#a16207]" />
               </button>
 
               <button
@@ -278,7 +289,7 @@ export const Hero: React.FC<HeroProps> = ({
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-stone-200 font-semibold text-xs transition-all border border-white/20"
               >
                 <Maximize2 className="w-3.5 h-3.5 text-amber-300" />
-                <span>{lang === 'st' ? 'Bona Setšoantšo sa Serapa' : 'View Berea Garden Photo'}</span>
+                <span>{lang === 'st' ? 'Bona Setšoantšo sa Valley' : 'View Guest House Photo'}</span>
               </button>
             </div>
           </div>
@@ -291,14 +302,14 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Garden Dining Highlight Header */}
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
                     <TreePine className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-300">
-                      Berea Garden Dining
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-amber-300">
+                      The Valley Retreat
                     </h3>
-                    <p className="text-[11px] text-stone-300">Outdoor Lawn & Thatched Lodge</p>
+                    <p className="text-[11px] text-stone-300">R350 Per Night For A Couple</p>
                   </div>
                 </div>
                 <button
@@ -310,21 +321,21 @@ export const Hero: React.FC<HeroProps> = ({
                 </button>
               </div>
 
-              {/* Thumbnail of the user's authentic photo */}
+              {/* Thumbnail of the guest house photo */}
               <div
                 onClick={() => setShowPhotoModal(true)}
                 className="relative rounded-2xl overflow-hidden border border-white/20 cursor-pointer group h-40"
               >
                 <img
                   src={BRAND_ASSETS.gardenBgUrl}
-                  alt="Rero Cafe lawn dining table"
+                  alt="The Valley Guest House landscape and terrace"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
                 <div className="absolute bottom-2 left-2 right-2 px-2.5 py-1.5 rounded-lg bg-black/70 backdrop-blur-xs text-[11px] font-semibold text-white flex items-center justify-between">
-                  <span>Main North 1, Berea Hills</span>
-                  <span className="text-amber-300 font-mono">5.0★</span>
+                  <span>The Valley · Lesotho</span>
+                  <span className="text-amber-300 font-mono font-bold">R350/Night</span>
                 </div>
               </div>
 
@@ -341,8 +352,8 @@ export const Hero: React.FC<HeroProps> = ({
                     </span>
                   </div>
                 </div>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
-                  Daily
+                <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold">
+                  Couples R350
                 </span>
               </div>
 
@@ -360,7 +371,7 @@ export const Hero: React.FC<HeroProps> = ({
                       Chat on WhatsApp
                     </p>
                     <p className="text-[11px] text-stone-300">
-                      wa.me/26659822812
+                      wa.me/26656038339
                     </p>
                   </div>
                 </div>
@@ -386,18 +397,18 @@ export const Hero: React.FC<HeroProps> = ({
 
             <img
               src={BRAND_ASSETS.gardenBgUrl}
-              alt="Rero Cafe Full Berea Hills outdoor garden view"
+              alt="The Valley Guest House Scenic Valley Landscape"
               className="w-full max-h-[75vh] object-contain bg-black"
               referrerPolicy="no-referrer"
             />
 
             <div className="p-4 sm:p-6 bg-stone-950 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
               <div>
-                <h4 className="font-serif text-lg font-bold">
-                  Rero Cafe · Berea Hills 200
+                <h4 className="font-serif text-lg font-bold text-amber-200">
+                  The Valley Guest House · R350 Per Night For A Couple
                 </h4>
                 <p className="text-xs text-stone-400">
-                  Main North 1 · Open until 12:00 AM midnight · {BRAND_ASSETS.motto}
+                  The Valley, Lesotho · WhatsApp +266 560 383 39 · 24/7 Check-in
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -408,7 +419,7 @@ export const Hero: React.FC<HeroProps> = ({
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#25D366] text-white text-xs font-bold hover:bg-[#20bd5a]"
                 >
                   <WhatsAppIcon className="w-4 h-4" />
-                  <span>Reserve on WhatsApp</span>
+                  <span>Book on WhatsApp</span>
                 </a>
                 <button
                   onClick={() => setShowPhotoModal(false)}

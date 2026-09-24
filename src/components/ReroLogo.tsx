@@ -13,10 +13,10 @@ export const ReroLogo: React.FC<ReroLogoProps> = ({
   variant = 'image',
 }) => {
   const sizeClasses = {
-    sm: 'h-8 sm:h-9',
-    md: 'h-10 sm:h-12',
-    lg: 'h-14 sm:h-16',
-    xl: 'h-20 sm:h-24',
+    sm: 'h-9 sm:h-10',
+    md: 'h-11 sm:h-13',
+    lg: 'h-16 sm:h-18',
+    xl: 'h-24 sm:h-28',
   };
 
   if (variant === 'image') {
@@ -24,47 +24,51 @@ export const ReroLogo: React.FC<ReroLogoProps> = ({
       <div className={`inline-flex items-center gap-2.5 ${className}`}>
         <img
           src={BRAND_ASSETS.logoUrl}
-          alt="Rero Cafe - eat, drink, relax, our mantra"
-          className={`${sizeClasses[size]} w-auto object-contain rounded-lg`}
+          alt="The Valley Guest House - +266 560 383 39"
+          className={`${sizeClasses[size]} w-auto object-contain rounded-lg shadow-2xs border border-[#b8860b]/30`}
           referrerPolicy="no-referrer"
         />
       </div>
     );
   }
 
-  // Vector / SVG representation of the Rero Cafe logo
+  // Crisp Vector Representation of The Valley Guest House Brand Card
   return (
-    <div className={`inline-flex items-center select-none ${className}`}>
-      <div className="relative flex items-center">
-        {/* Bold Lowercase 'rero' */}
-        <span className="font-sans font-black tracking-tight text-[#111111] text-2xl sm:text-3xl leading-none">
-          rer
+    <div
+      className={`inline-flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl bg-white border-2 border-[#b8860b] shadow-xs select-none ${className}`}
+    >
+      <div className="border border-[#b8860b]/60 px-3 py-1.5 rounded-lg flex flex-col items-center text-center">
+        {/* 'The Valley' Script */}
+        <span className="font-serif italic text-[#a16207] text-sm sm:text-base font-bold leading-tight">
+          The Valley
         </span>
 
-        {/* The 'o' with circular elephant emblem & curved motto */}
-        <div className="relative inline-flex items-center justify-center mx-0.5">
-          {/* Circular badge */}
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#111111] text-white flex items-center justify-center p-1 shadow-xs relative">
-            {/* Elephant Silhouette SVG */}
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-5 h-5 text-white transform -scale-x-100"
-            >
-              <path d="M19.5 9.5c-.3-.8-.9-1.5-1.7-1.9-1.2-.6-2.6-.4-3.6.4-.3.2-.6.5-.9.8-.7-.6-1.7-.9-2.7-.8-1.5.1-2.9 1-3.6 2.3-.3.6-.4 1.3-.4 2 0 .4.1.8.2 1.2-.5.3-.9.7-1.2 1.2-.5.8-.6 1.8-.4 2.7.2.9.7 1.7 1.5 2.2.4.3.9.4 1.4.4.7 0 1.4-.3 1.9-.8.4-.4.7-.9.8-1.5.8.3 1.7.4 2.6.2 1.2-.3 2.2-1.1 2.7-2.2.3-.6.4-1.3.4-2 0-.3 0-.6-.1-.9 1.1-.3 2-1 2.4-2 .4-.8.5-1.7.2-2.6-.2-.3-.4-.5-.6-.7zm-1.8 1.8c-.3.6-.8 1-1.4 1.2-.2 0-.4.1-.6.1-.2 0-.3-.1-.4-.2-.1-.1-.1-.3-.1-.5 0-.7.3-1.4.8-1.9.4-.4.9-.7 1.5-.7.3 0 .5.1.6.3.2.3.2.7.1 1.1-.1.2-.2.4-.3.6z" />
-            </svg>
-          </div>
+        {/* 'Guest House' Script */}
+        <span className="font-serif italic text-[#a16207] text-lg sm:text-xl font-black leading-tight tracking-wide">
+          Guest House
+        </span>
 
-          {/* Curved motto text above */}
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] sm:text-[9px] font-medium tracking-tight text-[#44403c]">
-            eat, drink, relax
-          </span>
+        {/* Stylized Bed Emblem */}
+        <div className="my-1 text-[#a16207]">
+          <svg viewBox="0 0 48 24" className="w-9 h-5 fill-current">
+            {/* Bed Headboard post */}
+            <rect x="2" y="2" width="4" height="20" rx="1" />
+            {/* Pillow */}
+            <circle cx="12" cy="8" r="3.5" />
+            {/* Mattress & base */}
+            <rect x="8" y="11" width="36" height="5" rx="1.5" />
+            {/* Footboard post */}
+            <rect x="42" y="7" width="4" height="15" rx="1" />
+          </svg>
         </div>
 
-        {/* Flowing cursive red 'Cafe' */}
-        <span className="font-serif italic font-black text-[#8B1E1E] text-2xl sm:text-3xl ml-1 -rotate-6 transform translate-y-1">
-          Cafe
-        </span>
+        {/* Phone number */}
+        <div className="flex items-center gap-1 text-[#a16207] text-[10px] sm:text-[11px] font-semibold tracking-wider">
+          <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+          <span className="font-serif italic">+266 560 383 39</span>
+        </div>
       </div>
     </div>
   );
